@@ -7,7 +7,6 @@ import { bindActionCreators } from 'redux'
 
 import { Link } from 'react-router'
 
-
 class Test1 extends Component{
 
 	constructor(props){
@@ -16,6 +15,8 @@ class Test1 extends Component{
 		console.log(props)
 	}
 
+
+
 	_onChangeText(event){
 		this.setState({time: event.target.value })
 	}
@@ -23,14 +24,14 @@ class Test1 extends Component{
 	render(){
 		//destructuring
 		const { changeTest, value, list } = this.props
-		
+
 		return(
 			<div>
 				<Link to='/test2'>Home2</Link>
 				Test1
 				<h1>Oi {value}</h1>
 				<input type="text" onChange={(e) => this._onChangeText(e)} value={this.state.time} />
-				<button className="btn btn-default" onClick={() => changeTest(this.state.time)}>button</button>				
+				<button className="btn btn-default" onClick={() => changeTest(this.state.time)}>button</button>
 				{list.map(t => (
 					<li key={t.id}>{t.text}</li>
 				))}
