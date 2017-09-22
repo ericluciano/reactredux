@@ -7,6 +7,8 @@ export default (state = INITIAL_STATE, action) => {
 		case 'TEST1_ACTION':
 			return { ...state, list: [...state.list, {id: Math.random(), text: action.payload}], value: action.payload}
 
+		case 'TEST1_CLEAR':
+			return { ...state, list:[], value:'' }
 		default:
 			return state
 	}
