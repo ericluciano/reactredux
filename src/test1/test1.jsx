@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import { changeTest } from './test1Actions'
+import { changeTest, clearState } from './test1Actions'
 
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
@@ -23,7 +23,7 @@ class Test1 extends Component{
 
 	render(){
 		//destructuring
-		const { changeTest, value, list } = this.props
+		const { changeTest, clearState, value, list } = this.props
 
 		return(
 			<div>
@@ -32,7 +32,8 @@ class Test1 extends Component{
 				<h1>Oi {value}</h1>
 				<input type="text" onChange={(e) => this._onChangeText(e)} value={this.state.time} />
 				<button className="btn btn-default" onClick={() => changeTest(this.state.time)}>button</button>
-				{list.map(t => (
+				<button onClick={() => clearState() }>Limpar</button>
+				{list.reverse().map(t => (
 					<li key={t.id}>{t.text}</li>
 				))}
 			</div>
@@ -45,7 +46,7 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) =>{
-  return bindActionCreators( { changeTest }, dispatch)
+  return bindActionCreators( { changeTest, clearState }, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Test1)
