@@ -71,7 +71,7 @@ class LoginForm extends Component{
 
           <div className="form-group">
 
-            <p><span className='fa fa-fw fa-user'></span> <strong>{usuario['nome']}</strong></p>
+            <p><span className='fa fa-fw fa-user'></span> <strong>Olá, {usuario.nome}</strong></p>
 
           </div>
 
