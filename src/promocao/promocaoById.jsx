@@ -3,11 +3,13 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
 import { browserHistory } from 'react-router'
-import {reduxForm, Field } from 'redux-form'
+import { reduxForm, Field } from 'redux-form'
 
-import { create, promocaoById } from './promocaoActions'
+import { create, promocaoById, clearComponent } from './promocaoActions'
 
 import Grid from '../template/bootstrap/grid'
+import If from '../operators/If'
+
 import Loading from '../loading/loading'
 
 import axios from 'axios'
@@ -22,8 +24,8 @@ class Promocao extends Component{
 
   }
 
-  componentWillReceiveProps(){
-
+  componentWillUnmount(){
+      this.props.clearComponent()
   }
 
   componentWillMount(){
@@ -56,6 +58,7 @@ class Promocao extends Component{
           return (
             // <Input key={item.id} texto={item.texto} valor={item.valor} />
             <div className="form-group" key={item.id}>
+              <p dangerouslySetInnerHTML={{__html: item.texto}} className='pergunta'></p>
               <Field name={item.valor} component='input' className='form-control input-md'/>
             </div>
           )
@@ -64,6 +67,7 @@ class Promocao extends Component{
         if(item.tipo == 'textarea'){
           return (
             <div className="form-group" key={item.id}>
+              <p dangerouslySetInnerHTML={{__html: item.texto}} className='pergunta'></p>
               <Field name={item.valor} component='textarea' className='form-control input-md'/>
             </div>
           )
@@ -82,7 +86,7 @@ class Promocao extends Component{
         </div>
 
         <Loading url_image={`${URL_LOADING}`} loading={this.props.loading} />
-
+        <If test={this.props.loading}>
         <div className='row'>
           <Grid cols="12 8 8">
 
@@ -104,6 +108,7 @@ class Promocao extends Component{
 
           </Grid>
         </div>
+      </If>
       </div>
 
 
@@ -117,9 +122,9 @@ const mapStateToProps = ( state ) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({ create, promocaoById }, dispatch)
+  return bindActionCreators({ create, promocaoById, clearComponent }, dispatch)
 }
 
-let promocaoForm = reduxForm({form: 'formParticipar'})(Promocao)
+let PromocaoForm = reduxForm({form: 'formParticipar'})(Promocao)
 //decorator
-export default connect(mapStateToProps, mapDispatchToProps)(promocaoForm)
+export default connect(mapStateToProps, mapDispatchToProps)(PromocaoForm)
