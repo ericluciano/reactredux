@@ -5,6 +5,7 @@ import Routes from './routes'
 
 import Header from '../template/header'
 import Messages from '../msg/messages'
+import SweetAlert from '../msg/sweetAlert'
 
 const App = (props) => (
 	<main className='container-fluid aj'>
@@ -14,6 +15,7 @@ const App = (props) => (
 			{props.children}
 		</div>
 		<Messages />
+		<SweetAlert />
 	</main>
 )
 
