@@ -4,7 +4,11 @@ import { toastr } from 'react-redux-toastr'
 import { URL_PROMOCAO } from '../constantes/const'
 import { validateToken } from '../login/loginActions'
 
+//mensagens
+import { Messages } from '../msg/msg'
+
 export const create = (values) => {
+
   return (dispatch, getState) => {
 
     const token = getState().login.token
@@ -26,10 +30,14 @@ export const create = (values) => {
               payload: ''
             })
       })
-      .catch(err => toastr.error('erro ' + err.response.data.error))
-
+      .catch( e =>
+          swal({
+            title:'Token!',
+            text: Messages[e.response.data.error],
+            type: 'warning'
+          })
+    )
     }
-
 }
 
 export const promocaoById = (promocao_id) => {
@@ -44,7 +52,7 @@ export const promocaoById = (promocao_id) => {
             { type: 'PROMOCAO_GET', 'payload': resp.data }
         ])
   })
-    .catch(err => console.log(`Error : ${err.response.data}`))
+    .catch(e => console.log(`Error : ${e.response.data}`))
   }
 }
 
