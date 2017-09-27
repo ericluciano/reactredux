@@ -39,6 +39,7 @@
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.1",
     "stylus-relative-loader": "^3.4.0",
+    "uglify-js-brunch": "^2.10.0",
     "url-loader": "^0.5.9",
     "webpack": "^1.15.0",
     "webpack-dev-server": "^1.16.5"
