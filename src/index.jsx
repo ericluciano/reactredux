@@ -17,10 +17,10 @@ const devTools = window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_
 
 const store = compose(applyMiddleware(thunk, multi, promise),autoRehydrate())(createStore)(reducers, devTools)
 
-persistStore(store, {}, () => {
+//persistStore(store, {blacklist: ['test1']}, () => {
 ReactDOM.render(
 	<Provider store={store}>
 		<Routes />
 	</Provider>,
 	document.getElementById('app'))
-})
+//})

@@ -23,12 +23,12 @@ class Test1 extends Component{
 
 	render(){
 		//destructuring
-		const { changeTest, clearState, value, list } = this.props
+		const { changeTest, clearState, value, list, tokenKey } = this.props
 
 		return(
 			<div>
 				<Link to='/test2'>Home2</Link>
-				Test1
+				Test1 {tokenKey}
 				<h1>Oi {value}</h1>
 				<input type="text" onChange={(e) => this._onChangeText(e)} value={this.state.time} />
 				<button className="btn btn-default" onClick={() => changeTest(this.state.time)}>button</button>
@@ -42,7 +42,7 @@ class Test1 extends Component{
 }
 
 const mapStateToProps = (state) => {
-  return { list: state.test1.list, value: state.test1.value }
+  return { list: state.test1.list, value: state.test1.value, tokenKey: state.login.token }
 }
 
 const mapDispatchToProps = (dispatch) =>{

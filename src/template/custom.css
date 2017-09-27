@@ -1,0 +1,25 @@
+.aj{
+  padding-left:0px;
+  padding-right:0px;
+}
+.header-bg{
+  padding-left:10px;
+  padding-right:10px;
+  background:#006699;
+  min-height:100px;
+}
+
+.first-menu{
+  padding-left:0px;
+  padding-right:0px;
+}
+
+.first-menu li {
+  display:inline-block;
+  color:#ffffff;
+  margin-right:8px;
+}
+
+.first-menu li:last-child{
+  margin-right:0px;
+}

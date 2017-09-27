@@ -1,5 +1,6 @@
 const webpack = require('webpack')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
+
 module.exports = {
 	entry: './src/index.jsx',
 	output: {
@@ -11,11 +12,11 @@ module.exports = {
 		contentBase: './public',
 	},
 	resolve: {
-		extensions: ['', '.js', '.jsx'],
+		extensions: ['', '.js', '.jsx', '.styl'],
 		alias: {
 			modules: __dirname + '/node_modules',
-			jquery: 'modules/admin-lte/plugins/jQuery/jquery-2.2.3.min.js',
-			bootstrap: 'modules/admin-lte/bootstrap/js/bootstrap.js'
+			jquery: 'modules/jquery/dist/jquery.min.js',
+			bootstrap: 'modules/bootstrap/dist/js/bootstrap.js'
 		}
 	},
 	plugins: [
@@ -37,10 +38,10 @@ module.exports = {
 			}
 		}, {
 			test: /\.css$/,
-			loader: ExtractTextPlugin.extract('style-loader', 'css-loader')
+			loader: ExtractTextPlugin.extract('style-loader', 'css-loader','stylus-loader')
 		}, {
 			test: /\.woff|.woff2|.ttf|.eot|.svg|.png|.jpg*.*$/,
 			loader: 'file'
-		}]
+		},{ test: /\.styl$/, loader: 'style-loader!css-loader!stylus-loader' }]
 	}
 }

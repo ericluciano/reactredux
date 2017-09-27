@@ -7,6 +7,7 @@ const Test2 = (props) => (
 		<div>Teste 2</div>
 		<h3>{props.nirvana}</h3>		
 		<Link to='/'>Home</Link>
+		
 	</div>
 )
 const mapStateToProps = ( state ) => (
