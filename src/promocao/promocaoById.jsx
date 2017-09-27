@@ -8,8 +8,11 @@ import {reduxForm, Field } from 'redux-form'
 import { create, promocaoById } from './promocaoActions'
 
 import Grid from '../template/bootstrap/grid'
+import Loading from '../loading/loading'
 
 import axios from 'axios'
+
+import { URL_UPLOADS, URL_LOADING } from '../constantes/const'
 
 const URL_PROMO_ID = 'http://localhost:8000/api/promocoes/'
 
@@ -17,9 +20,6 @@ class Promocao extends Component{
   constructor(props){
 		super(props)
 
-    //this.state = { list: [], promo_id: '' }
-
-    this.props.promocaoById(this.props.params.promo_id)
   }
 
   componentWillReceiveProps(){
@@ -35,15 +35,16 @@ class Promocao extends Component{
     //
     // axios.get(URL)
     // .then(resp => this.setState({list: resp.data }))
+
     this.props.promocaoById(this.props.params.promo_id)
   }
 
 
   render(){
 
-    const { handleSubmit, list } = this.props
+    const { handleSubmit, list, loading } = this.props
     //console.log(handleSubmit)
-    const url_image = 'http://mixriofm.uol.com.br/uploads/'
+    const url_image = `${URL_UPLOADS}`
     const url_promo_id = '/promocao/'
     console.log(this.props.list)
 
@@ -79,11 +80,14 @@ class Promocao extends Component{
             <hr/>
           </div>
         </div>
+
+        <Loading url_image={`${URL_LOADING}`} loading={this.props.loading} />
+
         <div className='row'>
           <Grid cols="12 8 8">
 
               <div className="card">
-                <img className="card-img-top" src={url_image + list.imagem} />
+                <img className="card-img-top" src={`${url_image}/${list.imagem}`} />
 
 
                 <div className="card-block">
@@ -109,7 +113,7 @@ class Promocao extends Component{
 }
 
 const mapStateToProps = ( state ) => {
-  return { token: state.login.token, list: state.promocao.dados  }
+  return { token: state.login.token, list: state.promocao.dados, loading: state.promocao.loading  }
 }
 
 const mapDispatchToProps = (dispatch) => {
