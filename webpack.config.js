@@ -25,6 +25,16 @@ module.exports = {
 		jQuery: 'jquery',
 		'window.jQuery': 'jquery'
 	}),
+
+	//production
+	new webpack.DefinePlugin({
+	  'process.env': {
+	    NODE_ENV: JSON.stringify('production')
+	  }
+	}),
+	new webpack.optimize.UglifyJsPlugin(),
+	//fproduction
+
 	new ExtractTextPlugin('app.css')
 	],
 	module: {
@@ -42,9 +52,11 @@ module.exports = {
 		}, {
 			test: /\.woff|.woff2|.ttf|.eot|.svg|.png|.jpg*.*$/,
 			loader: 'file'
-		},{ test: /\.styl$/, loader: 'style-loader!css-loader!stylus-loader' },{
-  test: /\.(png|jpg|.gif)$/,
-  loader: 'url-loader'
-}]
+		},{
+			test: /\.styl$/, loader: 'style-loader!css-loader!stylus-loader'
+		},{
+  		test: /\.(png|jpg|.gif)$/,
+		  loader: 'url-loader'
+		}]
 	}
 }
