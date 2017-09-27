@@ -6,36 +6,40 @@ import { toastr } from 'react-redux-toastr'
 
 import { validateToken } from '../login/loginActions'
 
+import { URL_PROMOCAO, URL_UPLOADS, URL_LOADING } from '../constantes/const'
+
+
 import Grid from '../template/bootstrap/grid'
+import If from '../operators/If'
 
 import axios from 'axios'
 
 import Card from '../template/bootstrap/card'
+import Loading from '../loading/loading'
 
 class Promocao extends Component{
   constructor(props){
 		super(props)
 
-    this.state = { list: [], token: '' }
+    this.state = { list: [], token: '', loading: false }
   }
 
   componentWillMount(){
-    console.log('DIDMOUNT '+ this.props.token)
     if(!this.props.token)
       toastr.info('Para participar das promoções, você tem que estar autenticado.')
 
-    axios.get('http://localhost:8000/api/promocoes')
-    .then(resp => this.setState({list: resp.data }))
+    axios.get(URL_PROMOCAO)
+    .then(resp => this.setState({list: resp.data, loading:true }))
   }
 
   componentDidMount(){
-    console.log('DIDMOUNT2 '+ this.props.token)
+
     if(!this.props.token)
       toastr.info('Para participar das promoções, você tem que estar autenticado.')
   }
 
   render(){
-    const url_image = 'http://mixriofm.uol.com.br/uploads/'
+    const url_image = `${URL_UPLOADS}`
     const url_promo_id = '/promocao/'
     return(
       <div>
@@ -45,10 +49,11 @@ class Promocao extends Component{
             <hr/>
           </div>
         </div>
+        <Loading url_image={`${URL_LOADING}`} loading={this.state.loading} />
         <div className='row'>
           {this.state.list.map(item => (
               <Grid cols="12 4 3" key={item.id}>
-                <Card id={item.id} link={url_promo_id + item.id} image={url_image + item.imagem} name={item.nome} text={item.resumo} />
+                <Card id={item.id} link={url_promo_id + item.id} image={`${url_image}/${item.imagem}`} name={item.nome} text={item.resumo} />
               </Grid>
 
           ))}
