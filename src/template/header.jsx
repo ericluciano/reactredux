@@ -19,12 +19,12 @@ export default (props) => (
 
 		<div className="collapse navbar-collapse navbar-ex1-collapse">
 			<ul className="nav navbar-nav">
-				<li><Link to='/'>Home</Link></li>
-				<li><Link to='/promocao'>Promoções</Link></li>
+				<li><Link to='/' data-toggle="collapse" data-target=".navbar-ex1-collapse">Home</Link></li>
+				<li><Link to='/promocao' data-toggle="collapse" data-target=".navbar-ex1-collapse">Promoções</Link></li>
 			</ul>
 
 			<ul className="nav navbar-nav navbar-right">
-				<li><Link to='/login'>Login</Link></li>
+				<li><Link to='/login' data-toggle="collapse" data-target=".navbar-ex1-collapse">Login</Link></li>
 
 			</ul>
 		</div>
