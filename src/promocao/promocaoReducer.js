@@ -10,6 +10,9 @@ export default (state = INITIAL_STATE, action) => {
 
       case 'PROMOCAO_GET':
         return { ...state, dados: action.payload, loading:true }
+
+      case 'PROMOCAO_CLEAR':
+          return { ...state, loading: false }
       default:
         return state
 
