@@ -1,9 +1,11 @@
 import axios from 'axios'
 import { toastr } from 'react-redux-toastr'
 import { browserHistory } from 'react-router'
+import {URL_LOGIN, URL_VALIDATE_TOKEN} from '../constantes/const'
 
-const URL_LOGIN = 'http://localhost:8000/api/login'
-const URL_VALIDATE_TOKEN = 'http://localhost:8000/api/validateToken'
+console.log(`URL LOGIN: ${URL_LOGIN}`)
+//const URL_LOGIN = 'http://localhost:8000/api/login'
+//const URL_VALIDATE_TOKEN = 'http://localhost:8000/api/validateToken'
 
 export const autenticar = (email, password) => {
   console.log(`Email: ${email}, Password: ${password}`)
