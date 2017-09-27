@@ -80,7 +80,7 @@ class Promocao extends Component{
       <div>
         <div className="row">
           <div className="col-lg-12">
-            <h1>Promoções - {list.nome}</h1>
+            <h1>{list.nome}</h1>
             <hr/>
           </div>
         </div>
