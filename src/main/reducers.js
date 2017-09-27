@@ -6,6 +6,7 @@ import promocaoReducer from '../promocao/promocaoReducer'
 
 import { reducer as toastrReducer } from 'react-redux-toastr'
 import { reducer as formReducer } from 'redux-form'
+import { reducer as sweetReducer } from 'react-redux-sweetalert'
 
 const rootReducer = combineReducers({
 	//(state, action)
@@ -14,7 +15,8 @@ const rootReducer = combineReducers({
 	toastr: toastrReducer,
 	login: loginReducer,
 	form: formReducer,
-	promocao: promocaoReducer
+	promocao: promocaoReducer,
+	sweetalert: sweetReducer
 })
 
 export default rootReducer
