@@ -1,5 +1,7 @@
 import axios from 'axios'
 import { toastr } from 'react-redux-toastr'
+import { swall, close } from 'react-redux-sweetalert'
+
 import { browserHistory } from 'react-router'
 //constantes
 import { URL_LOGIN, URL_VALIDATE_TOKEN } from '../constantes/const'
@@ -7,35 +9,40 @@ import { URL_LOGIN, URL_VALIDATE_TOKEN } from '../constantes/const'
 import { Messages } from '../msg/msg'
 
 export const autenticar = (email, password) => {
-  return (dispatch) => {
+  return (dispatch, getState) => {
+
     axios.post( URL_LOGIN, { email, password } )
-          .then( resp => {
+    .then( resp => {
 
-                toastr.success('','Login realizado com sucesso.')
+          toastr.success('','Login realizado com sucesso.')
 
-                  dispatch({
-                    type: 'LOGIN_AUTH_SUCCESS',
-                    payload: resp.data
-                  })
+            dispatch([{
+              type: 'LOGIN_AUTH_SUCCESS',
+              payload: resp.data
+            }, validateToken(resp.data.access_token)])
 
+    })
+    .catch(e => {
+
+          //toastr.e('Erro', e.response.data['message'])
+
+          swal({
+                title:'Erro!',
+                text: e.response.data['message'],
+                type: 'error'
           })
-          .catch(error => {
 
-                toastr.error('Erro', error.response.data['message'])
-
-                  dispatch({
-                    type: 'LOGIN_AUTH_ERROR',
-                    payload: ''
-                  })
-
+          dispatch({
+            type: 'LOGIN_AUTH_ERROR',
+            payload: ''
           })
+
+    })
   }
 }
 
 export const redirect = () => {
-
   browserHistory.push('/promocao')
-
 }
 
 export const logout = () => {
@@ -56,20 +63,25 @@ export const validateToken = (token) => {
           .then(
             (resp) => {
 
-                dispatch({
+                dispatch([{
                   type: 'TOKEN_VALID',
                   payload: resp.data
                 },{
                   type: 'LOGIN_AUTH_FETCH_USER',
                   payload: resp.data.user
-                })
+                }])
             }
           )
           .catch(
-            (error) => {
-              let error_type = error.response.data.type
+            (e) => {
+              let e_type = e.response.data.type
 
-                toastr.warning( Messages[error_type] )
+                //toastr.warning( Messages[e_type] )
+                swal({
+                      title:'Sessão expirada.',
+                      text: Messages[e_type],
+                      type: 'warning'
+                })
 
                 dispatch({
                     type: 'TOKEN_INVALID',
