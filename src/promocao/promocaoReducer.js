@@ -1,5 +1,5 @@
 const INITIAL_STATE = {
-  dados: []
+  dados: [], loading : false
 }
 
 export default (state = INITIAL_STATE, action) => {
@@ -9,7 +9,7 @@ export default (state = INITIAL_STATE, action) => {
         return { ...state }
 
       case 'PROMOCAO_GET':
-        return { ...state, dados: action.payload }
+        return { ...state, dados: action.payload, loading:true }
       default:
         return state
 
