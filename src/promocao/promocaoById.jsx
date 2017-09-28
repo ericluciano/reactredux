@@ -48,8 +48,6 @@ class Promocao extends Component{
     //console.log(handleSubmit)
     const url_image = `${URL_UPLOADS}`
     const url_promo_id = '/promocao/'
-    console.log(this.props.list)
-
 
     const componentByType = (props) => {
       let item = props.perguntas || []
@@ -100,7 +98,7 @@ class Promocao extends Component{
                   </div>
                   <form role='form' name='form' id='form' onSubmit={handleSubmit(this.props.create)}>
                   {componentByType(list)}
-                    <button type='submit' className='btn btn-primary btn-lg'>Participar</button>
+                    <button type='submit' className='btn btn-primary btn-md'>PARTICIPAR</button>
                   </form>
                 </div>
 
