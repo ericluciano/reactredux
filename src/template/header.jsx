@@ -13,7 +13,7 @@ export default (props) => (
 				<span className="icon-bar"></span>
 				<span className="icon-bar"></span>
 			</button>
-			<a className="navbar-brand" href="#">App</a>
+			<a className="navbar-brand" href="/">App</a>
 		</div>
 
 
