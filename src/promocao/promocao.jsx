@@ -25,8 +25,8 @@ class Promocao extends Component{
   }
 
   componentWillMount(){
-    if(!this.props.token)
-      toastr.info('Para participar das promoções, você tem que estar autenticado.')
+    // if(!this.props.token)
+    //   toastr.info('Para participar das promoções, você tem que estar autenticado.')
 
     axios.get(URL_PROMOCAO)
     .then(resp => this.setState({list: resp.data, loading:true }))
@@ -34,8 +34,8 @@ class Promocao extends Component{
 
   componentDidMount(){
 
-    if(!this.props.token)
-      toastr.info('Para participar das promoções, você tem que estar autenticado.')
+    // if(!this.props.token)
+    //   toastr.info('Para participar das promoções, você tem que estar autenticado.')
   }
 
   render(){
