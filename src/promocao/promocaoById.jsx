@@ -70,6 +70,43 @@ class Promocao extends Component{
             </div>
           )
         }
+
+        if(item.tipo == "radio" || item.tipo == "checkbox"){
+          return (
+            <div className="form-group" key={item.id}>
+              <p dangerouslySetInnerHTML={{__html: item.texto}} className='pergunta'></p>
+
+              {item.campos.split("|").map(function(r){
+                return (
+                  <div>
+                  <label>
+                  <Field name={item.valor} type={item.tipo} component='input' value={r} />{' '}{r}
+                  </label>
+                </div>
+                )
+              })}
+            </div>
+          )
+        }
+
+        if(item.tipo == "select"){
+          return (
+            <div className="form-group" key={item.id}>
+              <p dangerouslySetInnerHTML={{__html: item.texto}} className='pergunta'></p>
+              <Field name={item.valor} component="select">
+            <option />
+            {item.campos.split("|").map(function(r){
+              return (
+                <option value={r}>{r}</option>
+              )
+            })}
+          </Field>
+            </div>
+          )
+        }
+
+
+
       })
 
 
