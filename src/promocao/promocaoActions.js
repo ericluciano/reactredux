@@ -15,7 +15,7 @@ export const create = (values) => {
     const promocao_id = getState().promocao.dados.id
 
     axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
-    console.log(values);
+    
     axios.post(`${URL_PROMOCAO}/${promocao_id}`, values)
     .then(
       (resp) => {
