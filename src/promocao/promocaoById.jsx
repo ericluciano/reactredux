@@ -7,6 +7,8 @@ import { reduxForm, Field } from 'redux-form'
 
 import { create, promocaoById, clearComponent } from './promocaoActions'
 
+import ArrayCheckbox from './ArrayCheckbox'
+
 import Grid from '../template/bootstrap/grid'
 import If from '../operators/If'
 
@@ -16,7 +18,7 @@ import axios from 'axios'
 
 import { URL_UPLOADS, URL_LOADING } from '../constantes/const'
 
-const URL_PROMO_ID = 'http://localhost:8000/api/promocoes/'
+//const URL_PROMO_ID = 'http://localhost:8000/api/promocoes/'
 
 class Promocao extends Component{
   constructor(props){
@@ -71,7 +73,7 @@ class Promocao extends Component{
           )
         }
 
-        if(item.tipo == "radio" || item.tipo == "checkbox"){
+        if(item.tipo == "radio"){
           return (
             <div className="form-group" key={item.id}>
               <p dangerouslySetInnerHTML={{__html: item.texto}} className='pergunta'></p>
@@ -81,6 +83,30 @@ class Promocao extends Component{
                   <div>
                   <label>
                   <Field name={item.valor} type={item.tipo} component='input' value={r} />{' '}{r}
+                  </label>
+                </div>
+                )
+              })}
+            </div>
+          )
+        }
+
+        if(item.tipo == "checkbox"){
+          return (
+            <div className="form-group" key={item.id}>
+              <p dangerouslySetInnerHTML={{__html: item.texto}} className='pergunta'></p>
+
+              {item.campos.split("|").map(function(r){
+                return (
+                  <div>
+                  <label>
+
+                    <Field
+                      name={item.valor}
+                      propName={item.valor}
+                      component={ArrayCheckbox}
+                      itemValue={r}
+                  />
                   </label>
                 </div>
                 )
