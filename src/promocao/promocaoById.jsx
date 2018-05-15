@@ -161,7 +161,7 @@ class Promocao extends Component{
                   </div>
                   <form role='form' name='form' id='form' onSubmit={handleSubmit(this.props.create)}>
                   {componentByType(list)}
-                  <If test={!list.informativa}>
+                  <If test={list.informativa === "0"}>
                     <button type='submit' className='btn btn-primary btn-md'>PARTICIPAR</button>
                   </If>
                   </form>
